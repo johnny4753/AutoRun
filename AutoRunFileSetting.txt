@@ -1,0 +1,4 @@
+"s1\server1.txt"
+wait 500
+"s2\server2.txt"
+wait 500

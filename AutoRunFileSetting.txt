@@ -1,3 +1,6 @@
+//comment test
+//"s1\Test.txt"
+
 "s1\server1.txt"
 wait 500
 "s2\server2.txt"

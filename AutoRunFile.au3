@@ -34,13 +34,14 @@ Func OnStartPressed()
    $settingFile = "AutoRunFileSetting.txt"
    _FileReadToArray($settingFile, $inputLines)		;將 $file 讀進 $inputLines 陣列，$inputLines[$i]為第i行的值
    For $i = 1 to UBound($inputLines) -1      ;走訪 $file 的所有line
-	   If StringInStr($inputLines[$i], "wait") Then		;如果該行有子字串wait
+
+	   If StringLeft($inputLines[$i], 4) == 'wait' Then		;如果該行左邊 4 字串為 wait
 		 $sArray = StringSplit($inputLines[$i], " ")		;將該行以空白切割
 		 $waitTime = $sArray[2]							;$sArray[0]為切割後的元素數量，所以wait 2000的2000為$sArray[2]
 		 Sleep($waitTime)
 	   EndIf
 
-	   If StringInStr($inputLines[$i], '"') Then
+	   If StringLeft($inputLines[$i], 1) == '"' Then
 		  $aLine = StringTrimRight($inputLines[$i], 1)	;去掉最右邊的"
 		  $aLine = StringTrimLeft($aLine, 1)			;去掉最左邊的"
 		  $sArray = StringSplit($aLine, "\")			;將該行檔案路徑以\切割
@@ -50,6 +51,7 @@ Func OnStartPressed()
 		  $pidAry[$pidPointer] = ShellExecute($fileName, "", $workDir)
 		  $pidPointer = $pidPointer + 1
 	   EndIf
+
 	Next
 EndFunc
 

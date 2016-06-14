@@ -11,10 +11,12 @@ Func _CreateGUI()
    GUICreate ("Test", 250, 100);; 建立GUI視窗
    GUISetOnEvent ( $GUI_EVENT_CLOSE, "_CLOSE");; 按下 右上角 CLOSE 會執行 _CLOSE
 
-   GUICtrlCreateButton("Start", 10, 30, 100)
+   GUICtrlCreateButton("Start", 10, 20, 100)
    GUICtrlSetOnEvent(-1, "OnStartPressed")
-   GUICtrlCreateButton("CloseAll", 130, 30, 100)
+   GUICtrlCreateButton("CloseAll", 130, 20, 100)
    GUICtrlSetOnEvent(-1, "OnCloseAllPressed")
+   GUICtrlCreateButton("MinimizeAll", 10, 60, 100)
+   GUICtrlSetOnEvent(-1, "OnMinimizeAllPressed")
 
    GUISetState (@SW_SHOW);; 顯示GUI
    While True;; 無窮迴圈
@@ -61,6 +63,32 @@ Func OnCloseAllPressed()
 		 ProcessClose($pidAry[$i])
 	  EndIf
    Next
+EndFunc
+
+Func OnMinimizeAllPressed()
+   For $i = 0 to UBound($pidAry) -1
+	  If ProcessExists($pidAry[$i]) Then
+		 $hwnd = _GetHwndFromPID($pidAry[$i])
+		 WinSetState($hwnd, "", @SW_MINIMIZE)
+	  EndIf
+   Next
+EndFunc
+
+Func _GetHwndFromPID($PID)
+	$hWnd = 0
+	$winlist = WinList()
+	Do
+		For $i = 1 To $winlist[0][0]
+			If $winlist[$i][0] <> "" Then
+				$iPID2 = WinGetProcess($winlist[$i][1])
+				If $iPID2 = $PID Then
+					$hWnd = $winlist[$i][1]
+					ExitLoop
+				EndIf
+			EndIf
+		Next
+	Until $hWnd <> 0
+	Return $hWnd
 EndFunc
 
 

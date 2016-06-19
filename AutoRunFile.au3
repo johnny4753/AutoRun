@@ -6,6 +6,8 @@ Global $pidAry[100]
 Global $pidPointer
 Global $hide_pidAry[100]
 Global $hide_pidPointer
+Global $notHide_pidAry[100]
+Global $notHide_pidPointer
 Global $isShow = False
 _CreateGUI()
 
@@ -53,7 +55,9 @@ Func OnStartPressed()
 		 $workDir = _GetWorkDir($path)
 		 $fileName = _GetFileName($path)
 		 $pidAry[$pidPointer] = ShellExecute($fileName, "", $workDir)
+		 $NotHide_pidAry[$NotHide_pidPointer] = $pidAry[$pidPointer]
 		 $pidPointer = $pidPointer + 1
+		 $NotHide_pidPointer = $NotHide_pidPointer + 1
 	  EndIf
 
 	  If StringLeft($inputLines[$i], 2) == '*"' Then
@@ -78,12 +82,21 @@ Func OnCloseAllPressed()
 EndFunc
 
 Func OnMinimizeAllPressed()
-   For $i = 0 to UBound($pidAry) -1
-	  If ProcessExists($pidAry[$i]) Then
-		 $hwnd = _GetHwndFromPID($pidAry[$i])
-		 WinSetState($hwnd, "", @SW_MINIMIZE)
-	  EndIf
-   Next
+   If $isShow == True Then
+	  For $i = 0 to UBound($pidAry) -1
+		 If ProcessExists($pidAry[$i]) Then
+			$hwnd = _GetHwndFromPID($pidAry[$i])
+			WinSetState($hwnd, "", @SW_MINIMIZE)
+		 EndIf
+	  Next
+   Else
+	  For $i = 0 to UBound($notHide_pidAry) -1
+		 If ProcessExists($notHide_pidAry[$i]) Then
+			$hwnd = _GetHwndFromPID($notHide_pidAry[$i])
+			WinSetState($hwnd, "", @SW_MINIMIZE)
+		 EndIf
+	  Next
+   EndIf
 EndFunc
 
 Func OnShowHidePressed()

@@ -38,6 +38,7 @@ EndFunc
 
 
 Func OnStartPressed()
+   $isShow = False
    Local $inputLines
    Local $sArray
    $settingFile = "AutoRunFileSetting.txt"

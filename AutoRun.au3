@@ -13,7 +13,7 @@ _CreateGUI()
 
 Func _CreateGUI()
    Opt ("GUIOnEventMode", 1);; 開啟OnEventMode
-   GUICreate ("Test", 250, 100);; 建立GUI視窗
+   GUICreate ("AutoRun", 250, 100);; 建立GUI視窗
    GUISetOnEvent ( $GUI_EVENT_CLOSE, "_CLOSE");; 按下 右上角 CLOSE 會執行 _CLOSE
 
    GUICtrlCreateButton("Start", 10, 20, 100)
@@ -41,7 +41,7 @@ Func OnStartPressed()
    $isShow = False
    Local $inputLines
    Local $sArray
-   $settingFile = "AutoRunFileSetting.txt"
+   $settingFile = "AutoRunSetting.txt"
    _FileReadToArray($settingFile, $inputLines)				;將 $file 讀進 $inputLines 陣列，$inputLines[$i] 為第i行的值
    For $i = 1 to UBound($inputLines) -1      				;走訪 $file 的所有 line
 

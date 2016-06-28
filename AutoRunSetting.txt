@@ -1,4 +1,4 @@
-//comment test
+//comment line
 //"s1\Test.txt"
 
 *"s1\server1.txt"

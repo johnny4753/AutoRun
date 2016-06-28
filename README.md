@@ -19,3 +19,16 @@ wait 500
 "s2\server2.txt"
 
 wait 500
+
+###UI
+![Alt text](/pic/preview.png)
+
+Start：Run all commands in AutoRunSetting.txt
+
+CloseAll：Close all file that is run by AutoRun
+
+MinimizeAll：Minimize all file that is run by AutoRun
+
+Show/Hide * file：Show or hide the * file path that is running.
+
+Surely, you can also run program with any extension like *.exe

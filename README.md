@@ -1,7 +1,7 @@
 # AutoRun
 A convenient tool can run multiple program by custom setting.
 
-###Instruction
+### Instruction
 In AutoRunSetting.txt , you can write commands like the following :
 
 //This is comment line.
@@ -20,7 +20,7 @@ wait 500
 
 wait 500
 
-###UI
+### UI
 ![Alt text](/pic/preview.png)
 
 Start：Run all commands in AutoRunSetting.txt
